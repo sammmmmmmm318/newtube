@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Goontube</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+      p{
+      font-family: Roboto, Arial;
+      margin-top: 0;
+      margin-bottom: 0;
+      }
+      body{
+        margin: 0;
+        padding-top: 100px;
+        padding-left: 100px;
+      }
+      .sidebar{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        top: 65px;
+        width: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .homeicon{
+        width: 60px;
+        object-fit: cover;
+        margin-left: -10px;
+        
+      }
+        
+      .shortsicon{
+        width: 80px;
+        object-fit: cover;
+        margin-left: -18px;
+        
+      }
+      .sub-icon{
+        width: 74px;
+        object-fit: cover;
+        margin-left: -15px;
+      }
+      .youicon{
+        width: 100px;
+        object-fit: cover;
+        margin-left: -22px;  
+      }
+      .home{
+        width: 50px;
+        font-size: 15px;
+        margin-left: 3px;
+        font-size: medium;
+      }
+        
+      .shorts{
+        width: 50px;
+        margin-left: 3px;
+        font-size: medium;
+      }
+
+      .sub{
+        width: 50px;
+        margin: left 3px;
+        font-size: medium;
+
+      }
+
+      .you{
+        width: 50px;
+        margin-left: 3px;
+        font-size: medium;
+      }
+      .header {
+        height: 65px;
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: rgb(255, 255, 255);
+        border-bottom-width: 2px;
+        border-bottom-color: rgb(245, 245, 245);
+        border-bottom-style: solid;
+      }
+      .lsec{
+        display: flex;
+        align-items: center;
+        margin-right: 60px;
+      }
+      .msec{
+        flex: 1;
+        margin-left: 50px;
+        margin-right: 30px;
+        max-width: 600px;
+        display: flex;
+        align-items: center;
+      }
+      .rsec{
+        width: 230px;
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+      }
+      .lines{
+        height: 23px;
+        margin-left: 23px;
+        margin-right: 25px;
+      }
+      .ytlogo{
+        height: 23px;
+      }
+      .searchbox{
+        flex: 1;
+        height: 35px;
+        padding-left: 15px;
+        padding-bottom: 5px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(141, 139, 139);
+        border-top-left-radius: 60px;
+        border-bottom-left-radius: 60px;
+        margin-left: -30px;
+        width: 0;
+      }
+      .searchbox::placeholder{
+        font-family: Roboto, Arial;
+        border-width: 1px;
+        font-size: 15px;
+      }
+      .search{
+        height: 43px;
+        width: 55px;
+        background-color: rgb(234, 233, 233);
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgb(141, 139, 139);
+        border-bottom-right-radius: 60px;
+        border-top-right-radius: 60px;
+        margin-left:-2px ;
+      }
+      .searchicon{
+        height: 30px;
+        width: 30px;
+        margin-top: 3px;
+        margin-left: -2px;
+      }
+      .mic{
+        height: 35px;
+        width: 35px;
+        border-radius: 80px;
+        background-color: rgb(225, 225, 225);
+        border: none;
+        margin-top: 2px;
+        margin-left: 15px;
+      }
+      .micicon{
+        height: 25px;
+        width: 25px;
+        margin-top: 3px;
+        margin-left: -1px; 
+      }
+      .cre{
+        height: 40px;
+        width:80px;
+        border-radius: 40px;
+        border: none;
+        background-color: rgb(225, 225, 225);
+        margin-right: 30px;
+      }
+      .cre::placeholder{
+        font-family: Roboto, Arial;
+        border-width: 1px;
+        font-size: 18px;
+      }
+      .bell{
+        height: 35px;
+        width: 35px;
+        background-color: rgb(225, 225, 225);
+        border-radius: 20px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        border: none;
+        margin-right: 30px;
+      }
+      .bellicon{
+        height: 25px;
+        width: 25px;
+        margin-top: 3px;
+        margin-left: -1px; 
+      }
+      .hpfp{
+        height: 40px;
+        border-radius: 30px;
+        margin-right: 20px;
+      }
+      .thumbnail {
+        width: 435px;
+        height: 230px;
+        border-radius: 15px;
+      }
+
+      .video-title {
+        margin-top: 0;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+        margin-bottom: 8px;
+      }
+
+      .video-info-grid {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+      }
+
+      .cpfp{
+        width: 40px;
+        border-radius: 50px;
+      }
+
+      .thumbnail-row {
+        margin-bottom: 12px;
+      }
+
+      .video-author,
+      .video-stats {
+        font-size: 13px;
+        color: rgb(96, 96, 96);
+      }
+
+      .video-author {
+        margin-bottom: 4px;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 16px;
+        row-gap: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="lsec">
+        <img class="lines" src="header/hamburger-menu.svg" >
+        <img class="ytlogo" src="header/youtube-logo.svg">
+      </div>
+      <div class="msec">
+        <input class="searchbox" type="textbox" placeholder="Search">
+        <button class="search">
+          <img class="searchicon" src="header/search.svg" >
+        </button>
+        <button class="mic">
+          <img  class="micicon" src="header/voice-search-icon.svg">
+        </button>
+      </div>
+      <div class="rsec">
+        <button class="cre">  Create</button>
+        <button class="bell">
+          <img class="bellicon" src="header/bell.svg">
+        </button>
+        <img class="hpfp" src="header/hpfp.webp">
+      </div>
+    </div>
+    <div class="sidebar">
+      <div class="home">
+        <img class="homeicon" src="header/home.webp">
+        <div style="font-size: small; margin-left: 4px;">Home</div>
+      </div>
+      <div class="shorts">
+        <img class="shortsicon" src="header/shorts.webp">
+        <div style="font-size: small; margin-left: 2px;">Shorts</div>
+      </div>
+      <div class="sub">
+        <img class="sub-icon" src="header/sub.webp">
+        <div style="margin-left: -10px; font-size: small;">Subscriptions</div>
+      </div>
+      <div class="you">
+        <img class="youicon" src="header/you.webp">
+        <div style="font-size: small; margin-left: 8px;">You</div>
+      </div>
+    </div>
+    <div class="video-grid">
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail1.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Guess who got stuck in employment
+            </p>
+            <p class="video-author">
+              Doctor saadhanaa
+            </p>
+            <p class="video-stats">
+              6.7M views &#183; 6 seconds ago
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail2.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp2.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Keshav sapudu vadhai bagirangamaga paakum sanjiv
+            </p>
+            <p class="video-author">
+              Sanjuu sambavangal
+            </p>
+            <p class="video-stats">
+              1M views &#183; 4 days ago
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail3.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp3.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Side effects of collip
+            </p>
+            <p class="video-author">
+              Ganjakai gasini
+            </p>
+            <p class="video-stats">
+              13.4M views &#183; 2 months ago
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail4.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="cpfp">
+            <img class="cpfp" src="cpfp/cpfp3.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              French bread kadaikar
+            </p>
+            <p class="video-author">
+              Sotta dora
+            </p>
+            <p class="video-stats">
+              27.1M views &#183; 4 months ago
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail5.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              How to act like sharukhan fulll tutorial ep1
+            </p>
+            <p class="video-author">
+              Arun acting academy
+            </p>
+            <p class="video-stats">
+              15.3K views &#183; 1 years ago
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail6.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Adopt Me
+            </p>
+            <p class="video-author">
+              Sanjai vlogss
+            </p>
+            <p class="video-stats">
+              141M views &#183; 1 year ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail7.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Naa patti aa cutiee aa(defo paatti)
+            </p>
+            <p class="video-author">
+              Aaayyaasrii in ayya sayalgal
+            </p>
+            <p class="video-stats">
+              141M views &#183; 1 year ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail8.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              Car-il 8 poduvathu epadi
+            </p>
+            <p class="video-author">
+              Papa payangal
+            </p>
+            <p class="video-stats">
+              18.3M views &#183; 1 months ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail9.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              En isai malaiyil nenai thayara
+            </p>
+            <p class="video-author">
+              5rupa Anirudh
+            </p>
+            <p class="video-stats">
+              34M views &#183; 2 year ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail10.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              How do vegans survive
+            </p>
+            <p class="video-author">
+              Herbivorous kevinakash
+            </p>
+            <p class="video-stats">
+              3.1M views &#183; 3 year ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail11.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              X-O adalam varingala
+            </p>
+            <p class="video-author">
+              Yarshi gaming
+            </p>
+            <p class="video-stats">
+              22.5M views &#183; 1 hours ago
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="video-preview">
+        <div class="thumbnail-row">
+          <img class="thumbnail" src="thumbnails/thumbnail12.webp">
+        </div>
+        <div class="video-info-grid">
+          <div class="channel-picture">
+            <img class="cpfp" src="cpfp/cpfp1.webp">
+          </div>
+          <div class="video-info">
+            <p class="video-title">
+              2026 nammabdhaa
+            </p>
+            <p class="video-author">
+              TVK Tharshith
+            </p>
+            <p class="video-stats">
+              11M views &#183; 1 year ago
+            </p>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </body>
+</html>
